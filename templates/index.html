@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Iris ML Dashboard</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+    display:flex;
+}
+
+/* Sidebar */
+.sidebar{
+    width:240px;
+    height:100vh;
+    background:#111827;
+    color:white;
+    padding:30px 20px;
+}
+
+.sidebar h2{
+    margin-bottom:40px;
+    font-size:20px;
+    letter-spacing:1px;
+}
+
+.sidebar p{
+    font-size:13px;
+    opacity:.6;
+}
+
+/* Main */
+.main{
+    flex:1;
+    padding:40px;
+}
+
+.header{
+    font-size:26px;
+    font-weight:700;
+    margin-bottom:30px;
+    color:#111827;
+}
+
+/* Card */
+.card{
+    background:white;
+    padding:25px;
+    border-radius:14px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    margin-bottom:25px;
+}
+
+/* Inputs */
+.input-group{
+    margin-bottom:18px;
+}
+
+.input-group label{
+    font-size:13px;
+    font-weight:600;
+    display:block;
+    margin-bottom:6px;
+}
+
+.input-group input{
+    width:100%;
+    padding:12px;
+    border-radius:8px;
+    border:1px solid #ddd;
+}
+
+/* Model Select */
+.model-select{
+    display:flex;
+    gap:20px;
+    margin-top:10px;
+}
+
+.model-select label{
+    font-size:14px;
+}
+
+/* Button */
+button{
+    margin-top:20px;
+    padding:12px 40px;
+    border:none;
+    border-radius:30px;
+    background:#2563eb;
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+/* Result Box */
+.result{
+    padding:20px;
+    border-radius:10px;
+    font-weight:700;
+    font-size:18px;
+}
+
+.success{
+    background:#ecfdf5;
+    color:#065f46;
+}
+
+footer{
+    margin-top:30px;
+    font-size:12px;
+    opacity:.5;
+}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+<h2>Iris ML</h2>
+<p>Machine Learning Classification System</p>
+</div>
+
+<div class="main">
+
+<div class="header">Flower Prediction Panel</div>
+
+<form method="post">
+<div class="card">
+
+<div class="input-group">
+<label>Sepal Length</label>
+<input type="number" step="0.1" name="SepalLengthCm" required>
+</div>
+
+<div class="input-group">
+<label>Sepal Width</label>
+<input type="number" step="0.1" name="SepalWidthCm" required>
+</div>
+
+<div class="input-group">
+<label>Petal Length</label>
+<input type="number" step="0.1" name="PetalLengthCm" required>
+</div>
+
+<div class="input-group">
+<label>Petal Width</label>
+<input type="number" step="0.1" name="PetalWidthCm" required>
+</div>
+
+<div class="model-select">
+<label><input type="radio" name="model" value="knn" checked> KNN</label>
+<label><input type="radio" name="model" value="nb"> Naive Bayes</label>
+</div>
+
+<button type="submit">Predict</button>
+
+</div>
+</form>
+
+{% if prediction %}
+<div class="card result success">
+Prediction: {{ prediction }}
+</div>
+{% endif %}
+
+<footer>
+Flask • Scikit-learn • Production Ready UI
+</footer>
+
+</div>
+
+</body>
+</html>
